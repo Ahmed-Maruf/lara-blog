@@ -10,7 +10,7 @@ $factory->define(Thread::class, function (Faker $faker) {
         'user_id' => function () {
             return factory('App\User')->create()->id;
         },
-        'title' => $faker->title,
+        'title' => $faker->word,
         'body' => $faker->sentence
     ];
 });
