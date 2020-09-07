@@ -13,11 +13,28 @@
                                 {{ session('status') }}
                             </div>
                         @endif
-                            <article>
+                        <article>
+                            <div class="body">
+                                {{ $thread->body }}
+                            </div>
+                        </article>
+                    </div>
+                    <div class="card-header">{{ __('Reply') }}</div>
+                    <div class="card-body">
+                        @if (session('status'))
+                            <div class="alert alert-success" role="alert">
+                                {{ session('status') }}
+                            </div>
+                        @endif
+                        <article>
+                            @foreach($thread->replies as $reply)
                                 <div class="body">
-                                    {{ $thread->body }}
+                                    <div class="card-header"><a href="">{{ $reply->user->name }}</a> replied {{ $reply->created_at->diffForHumans() }}</div>
+                                    {{ $reply->body }}
                                 </div>
-                            </article>
+                                <hr>
+                            @endforeach
+                        </article>
                     </div>
                 </div>
             </div>
